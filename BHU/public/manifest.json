@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "My chrome Extension",
+    "version": "1.0",
+    "action":{
+        "default_popup": "index.html"
+    },
+    "permissions": [
+    "scripting","storage","tabs","activeTab","declarativeContent"
+    ],
+    "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+    ],
+    "icons": {
+        "16": "icons/icon-16.png",
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
+    "content_scripts": [
+    {
+      "js": ["src/content.jsx"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.jsx",
+    "type": "module"
+  }
+}

@@ -1,0 +1,154 @@
+.popup-container {
+  width: 350px;
+  height: 500px;
+  padding: 20px;
+  text-align: center;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-container p span {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+/* after the completion of login sign up page */
+
+
+/* 📌 Container Styling */
+.profile-container {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Step Progress Bar */
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #28a745;  /* Green Active */
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.step.inactive .circle {
+  background: #ccc;
+}
+
+.step p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.line {
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  background: #ccc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+
+/* 📌 Form Section */
+.form-section {
+  padding: 20px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Form Inputs */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* 📌 User Type Icons */
+.user-type-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.user-type {
+  width: 30%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+
+.user-type img {
+  display: block;
+  margin: auto;
+}
+
+
+.user-type.active {
+  border: 2px solid #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+/* 📌 Save Button */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #218838;
+}
