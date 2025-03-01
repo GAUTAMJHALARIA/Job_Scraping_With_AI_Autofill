@@ -193,3 +193,109 @@ body {
 .job-item:hover::before {
   opacity: 1;
 }
+
+.job-content-wrapper {
+  display: flex;
+  /* height: 500px;  */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  border-radius: 5px; /* Add rounded corners */
+  overflow: hidden; /* Hide overflow to prevent double scrollbars */
+}
+
+.job-list-content {
+  flex: 1;
+  max-width: 300px; /* Adjust width as needed */
+  overflow-y: auto;
+  border-right: 1px solid #eee;
+  padding: 10px;
+}
+
+.job-details {
+  flex: 2;
+  padding: 20px;
+  overflow-y: auto; /* Add scroll for long job details */
+}
+
+.job-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.job-item:hover {
+  background-color: #f0f0f0; /* Add hover effect */
+}
+
+.job-item.selected {
+  background-color: #e0e0e0;
+}
+
+.job-details h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.job-details p {
+  margin-bottom: 5px;
+}
+
+.job-details-buttons {
+  margin-top: 20px;
+}
+
+.apply-now-button,
+.update-resume-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-now-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.apply-now-button:hover {
+  background-color: #0056b3;
+}
+
+.update-resume-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.update-resume-button:hover {
+  background-color: #5a6268;
+}
+
+/* Custom Scrollbar (Webkit browsers) */
+.job-list-content::-webkit-scrollbar,
+.job-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+.job-list-content::-webkit-scrollbar-track,
+.job-details::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.job-list-content::-webkit-scrollbar-thumb,
+.job-details::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.job-list-content::-webkit-scrollbar-thumb:hover,
+.job-details::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Style the "Select a job" placeholder */
+.job-details p:first-child {
+  font-style: italic;
+  color: #888;
+}

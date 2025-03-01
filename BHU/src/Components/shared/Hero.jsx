@@ -9,13 +9,16 @@ const Hero = () => {
   const [jobs, setJobs] = useState([]);
   const { authUser, logout } = useAuth();
   const navigate = useNavigate();
+  const [selectedJob, setSelectedJob] = useState(null);
+
+
   const [filters, setFilters] = useState({
     keywords: "",
     location: "",
     remote: "",
     job_type: "", // Fixed Typo: Changed from job_typee to job_type
-    seniority_: "",
-    time_posted: 7,
+    experience_level: "",
+    time_posted: "",
   });
 
   // Fetch jobs based on user input
@@ -60,21 +63,21 @@ const Hero = () => {
 
       {/* Search Bar */}
       <div className="search-container">
-        <input 
-          type="text" 
-          className="search-input" 
-          name="keywords" 
-          placeholder="Job Title / Keywords" 
+        <input
+          type="text"
+          className="search-input"
+          name="keywords"
+          placeholder="Job Title / Keywords"
           value={filters.keywords} // Fixed: Ensures input reflects state
-          onChange={handleFilterChange} 
+          onChange={handleFilterChange}
         />
-        <input 
-          type="text" 
-          className="search-input" 
-          name="location" 
-          placeholder="City / State / Zip Code" 
+        <input
+          type="text"
+          className="search-input"
+          name="location"
+          placeholder="City / State / Zip Code"
           value={filters.location} // Fixed: Ensures input reflects state
-          onChange={handleFilterChange} 
+          onChange={handleFilterChange}
         />
         <button className="search-button" onClick={fetchJobs}>Search</button>
       </div>
@@ -97,15 +100,17 @@ const Hero = () => {
           <option value="internship">Internship</option>
         </select>
 
-        <input
+        <select
           className="filter-dropdown"
-          type="number"
           name="time_posted"
           value={filters.time_posted}
           onChange={handleFilterChange}
-          placeholder="Time Posted (hrs)"
-          min="0"
-        />
+        >
+          <option value="">Any Time</option>
+          <option value="past_24_hours">Past 24 Hours</option>
+          <option value="past_week">Past Week</option>
+          <option value="past_month">Past Month</option>
+        </select>
 
         <select className="filter-dropdown" name="experience_level" value={filters.experience_level} onChange={handleFilterChange}>
           <option value="">Internship Level</option>
@@ -126,24 +131,48 @@ const Hero = () => {
       </h1>
 
       {/* Job Listings */}
-      <h2 className="job-list-title">Job Listings</h2>            
-      <div className="job-list-content">
-        {loading ? (
-          <p>Loading...</p>
-        ) : jobs.length > 0 ? (
-          jobs.map((job, index) => (
-            <div key={index} className="job-item">
-              <h2>{job.title}</h2>
-              <p><strong>Experience:</strong> {job.experience_level || "Not specified"}</p>
-              <p><strong>Location:</strong> {job.location || "Not specified"}</p>
-              <p><strong>Job Type:</strong> {job.job_type || "Not specified"}</p>
-              <p><strong>Posted:</strong> {job.time_posted || "Not specified"} days ago</p>
-              <p><strong>Remote:</strong> {job.remote ? "Yes" : "No"}</p>
-            </div>
-          ))
-        ) : (
-          <p>No jobs found.</p>
-        )}
+      <h2 className="job-list-title">Job Listings</h2>
+      <div className="job-content-wrapper">
+        <div className="job-list-content">
+          {loading ? (
+            <p>Loading...</p>
+          ) : jobs.length > 0 ? (
+            jobs.map((job, index) => (
+              <div key={index} className={`job-item ${selectedJob === job ? "selected" : ""}`}
+                onClick={() => setSelectedJob(job)}>
+                <h2>{job.title}</h2>
+                <p><strong>Company:</strong> {job.company || "Not specified"}</p>
+                <p><strong>Location:</strong> {job.location || "Not specified"}</p>
+                <p><strong>Posted:</strong> {job.posted || "Not specified"}</p>
+                <p><strong>Remote:</strong> {job.remote ? "Yes" : "No"}</p>
+              </div>
+            ))
+
+          ) : (
+            <p>No jobs found.</p>
+          )}
+        </div>
+        <div className="job-details">
+          {selectedJob ? (
+            <>
+              <h2>{selectedJob.title}</h2>
+              <p><strong>Company:</strong> {selectedJob.company || "Not specified"}</p>
+              <p><strong>Industries:</strong> {selectedJob.industries || "Not specified"}</p>
+              <p><strong>Location:</strong> {selectedJob.location || "Not specified"}</p>
+              <p><strong>Employment Type:</strong> {selectedJob.employment_type || "Not specified"}</p>
+              <p><strong>Posted:</strong> {selectedJob.posted || "Not specified"}</p>
+              <p><strong>Applicants:</strong> {selectedJob.applicants || "Not specified"}</p>
+              <p><strong>Description:</strong> {selectedJob.description || "No description available."}</p>
+
+              <div className="job-details-buttons">
+                <button className="apply-now-button">Apply Now</button>
+                <button className="update-resume-button">Update Resume</button>
+              </div>
+            </>
+          ) : (
+            <p>Select a job to view details.</p>
+          )}
+        </div>
       </div>
     </div>
   );
