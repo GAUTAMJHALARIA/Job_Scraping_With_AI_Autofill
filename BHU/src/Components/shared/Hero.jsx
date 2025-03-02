@@ -11,6 +11,13 @@ const Hero = () => {
   const navigate = useNavigate();
   const [selectedJob, setSelectedJob] = useState(null);
 
+  // useEffect(() => {
+  //   if (jobs.length > 0 && jobs[0]) {
+  //     setSelectedJob(jobs[0]);
+  //   } else {
+  //     setSelectedJob(null);
+  //   }
+  // }, [jobs]);
 
   const [filters, setFilters] = useState({
     keywords: "",
